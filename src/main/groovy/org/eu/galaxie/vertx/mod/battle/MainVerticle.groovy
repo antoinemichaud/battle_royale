@@ -29,11 +29,21 @@ class MainVerticle extends Verticle {
         }
 
         println "JSOUPING"
-        Document doc = Jsoup.connect("http://www.leboncoin.fr/voitures/offres").get();
-        Elements categories = doc.select("#searcharea option");
+        Document doc = Jsoup.connect("http://www.leboncoin.fr/").get();
+        Elements categories = doc.select(".CountyList a");
 
         println "["
-        println categories.listIterator().collect { "{ value: \"${it.attr('value')}\", text: \"${it.text()}\" }"}.join(',\n')
+        println categories.listIterator().collect {
+            def readable = it.text()
+
+            def crawlable = readable.toLowerCase()
+                    .replaceAll('é', 'e')
+                    .replaceAll('-', '_')
+                    .replaceAll(' ', '_')
+                    .replaceAll('ô', 'o')
+
+            "{ value: \"${crawlable}\", text: \"${readable}\" }"
+        }.join(',\n')
         println "]"
         println "END JSOUPING"
 

@@ -8,18 +8,32 @@ battleModule.value('uploadFileList', []);
 
 function RootCtrl($rootScope, $scope, $route, $routeParams, $location, eventbus, uploadFileList) {
     $scope.regions = [
-        { value: "1", text: "Ile-de-France" },
-        { value: "2", text: "Régions voisines" },
-        { value: "3", text: "Toute la France" },
-        { value: "0", text: "-- DEPARTEMENT --" },
-        { value: "175", text: "Paris" },
-        { value: "177", text: "Seine-et-Marne" },
-        { value: "178", text: "Yvelines" },
-        { value: "191", text: "Essonne" },
-        { value: "192", text: "Hauts-de-Seine" },
-        { value: "193", text: "Seine-Saint-Denis" },
-        { value: "194", text: "Val-de-Marne" },
-        { value: "195", text: "Val-d'Oise" }
+        { value: "alsace", text: "Alsace" },
+        { value: "aquitaine", text: "Aquitaine" },
+        { value: "auvergne", text: "Auvergne" },
+        { value: "basse_normandie", text: "Basse-Normandie" },
+        { value: "bourgogne", text: "Bourgogne" },
+        { value: "bretagne", text: "Bretagne" },
+        { value: "centre", text: "Centre" },
+        { value: "champagne_ardenne", text: "Champagne-Ardenne" },
+        { value: "corse", text: "Corse" },
+        { value: "franche_comte", text: "Franche-Comté" },
+        { value: "haute_normandie", text: "Haute-Normandie" },
+        { value: "ile_de_france", text: "Ile-de-France" },
+        { value: "languedoc_roussillon", text: "Languedoc-Roussillon" },
+        { value: "limousin", text: "Limousin" },
+        { value: "lorraine", text: "Lorraine" },
+        { value: "midi_pyrenees", text: "Midi-Pyrénées" },
+        { value: "nord_pas_de_calais", text: "Nord-Pas-de-Calais" },
+        { value: "pays_de_la_loire", text: "Pays de la Loire" },
+        { value: "picardie", text: "Picardie" },
+        { value: "poitou_charentes", text: "Poitou-Charentes" },
+        { value: "provence_alpes_cote_d'azur", text: "Provence-Alpes-Côte d'Azur" },
+        { value: "rhone_alpes", text: "Rhône-Alpes" },
+        { value: "guadeloupe", text: "Guadeloupe" },
+        { value: "martinique", text: "Martinique" },
+        { value: "guyane", text: "Guyane" },
+        { value: "reunion", text: "Réunion" }
     ];
 
 
