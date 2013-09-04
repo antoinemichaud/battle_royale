@@ -1,6 +1,6 @@
 def config = [
         WebVerticle: [
-                port: 8083
+                port: 8080
         ]
 ]
 

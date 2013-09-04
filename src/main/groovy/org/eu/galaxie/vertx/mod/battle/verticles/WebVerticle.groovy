@@ -36,7 +36,7 @@ class WebVerticle extends Verticle {
 
     def start() {
         conf.host = container?.config?.host ?: '0.0.0.0'
-        conf.port = container?.config?.port ?: 8081
+        conf.port = container?.config?.port ?: 8080
 
         try {
             def server = vertx.createHttpServer()
