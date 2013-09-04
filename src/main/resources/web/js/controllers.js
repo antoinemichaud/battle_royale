@@ -7,6 +7,21 @@ var FileStatus = {
 battleModule.value('uploadFileList', []);
 
 function RootCtrl($rootScope, $scope, $route, $routeParams, $location, eventbus, uploadFileList) {
+    $scope.regions = [
+        { value: "1", text: "Ile-de-France" },
+        { value: "2", text: "Régions voisines" },
+        { value: "3", text: "Toute la France" },
+        { value: "0", text: "-- DEPARTEMENT --" },
+        { value: "175", text: "Paris" },
+        { value: "177", text: "Seine-et-Marne" },
+        { value: "178", text: "Yvelines" },
+        { value: "191", text: "Essonne" },
+        { value: "192", text: "Hauts-de-Seine" },
+        { value: "193", text: "Seine-Saint-Denis" },
+        { value: "194", text: "Val-de-Marne" },
+        { value: "195", text: "Val-d'Oise" }
+    ];
+
 
     $scope.categories = [
         { value: "0", text: "Toutes catégories" },
