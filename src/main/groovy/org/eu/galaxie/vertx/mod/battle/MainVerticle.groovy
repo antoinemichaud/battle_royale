@@ -1,5 +1,8 @@
 package org.eu.galaxie.vertx.mod.battle
 
+import org.jsoup.Jsoup
+import org.jsoup.nodes.Document
+import org.jsoup.select.Elements
 import org.vertx.groovy.platform.Verticle
 import org.vertx.java.core.impl.DefaultFutureResult
 
@@ -24,5 +27,13 @@ class MainVerticle extends Verticle {
                 }
             }
         }
+
+        println "JSOUPING"
+        Document doc = Jsoup.connect("http://en.wikipedia.org/").get();
+        Elements categories = doc.select("#search_category option");
+
+        categories.each { println "${it.text()}"}
+        println "END JSOUPING"
+
     }
 }
