@@ -29,10 +29,12 @@ class MainVerticle extends Verticle {
         }
 
         println "JSOUPING"
-        Document doc = Jsoup.connect("http://en.wikipedia.org/").get();
+        Document doc = Jsoup.connect("http://www.leboncoin.fr/voitures/offres").get();
         Elements categories = doc.select("#search_category option");
 
-        categories.each { println "${it.text()}"}
+        println "{"
+        println categories.listIterator().collect { "{ value: \"${it.attr('value')}\", text: \"${it.text()}\" }"}.join(',\n')
+        println "}"
         println "END JSOUPING"
 
     }
