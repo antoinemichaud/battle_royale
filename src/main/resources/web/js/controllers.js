@@ -113,6 +113,9 @@ function RootCtrl($rootScope, $scope, $route, $routeParams, $location, eventbus,
     $scope.visibleResultIndex = null;
     $scope.availableAnnounces = [];
 
+    $scope.currentRegion = null;
+    $scope.currentCategory = null;
+
     // Upload section
     $scope.uploadFileList = uploadFileList;
 
@@ -139,7 +142,18 @@ function RootCtrl($rootScope, $scope, $route, $routeParams, $location, eventbus,
         eventbus.emit('search', {query: searchField});
     };
 
-    $scope.displayPopup = function () {
+    $scope.addLine = function (text) {
+        $scope.availableAnnounces.push({
+            announceLine: text
+        })
+    }
+
+    $scope.setCategory = function (text) {
+        $scope.currentCategory = text;
+    }
+
+    $scope.setRegion = function (text) {
+        $scope.setCurrentCategory = text;
     }
 
     eventbus.on('search.response', function (remoteResponse) {

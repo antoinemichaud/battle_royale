@@ -4,57 +4,30 @@
 
         <form action="">
             <select>
-                <option value="categorie1" ng-click="displayPopup()">categorie1</option>
-                <option value="categorie2">categorie2</option>
-                <option value="categorie3">categorie3</option>
+                <option ng-repeat="res in categories" value="{{res.text}}" ng-click="setCategory(res.text)">
+                    {{res.text}}
+                </option>
+
             </select>
             <select>
-                <option value="region1">region1</option>
-                <option value="region2">region2</option>
-                <option value="region3">region3</option>
+                <option ng-repeat="res in regions" value="{{res.text}}" ng-click="setRegion(res.text)">{{res.text}}
+                </option>
             </select>
         </form>
 
         <div class="span2 bs-docs-sidebar">
-            <ul class="nav nav-list bs-docs-sidenav affix span2">
+            <ul class="nav nav-list bs-docs-sidenav affix span12">
                 <li>
                     <a href="#">Search results</a>
                 </li>
-                <li ng-repeat="res in searchResults" ng-click="showResults($index)"
-                    ng-class="{active: $index == visibleResultIndex}">
-                    <a href="#">
-                        {{res.search}} <i class="icon-chevron-right"></i>
-                    </a>
-                </li>
+                <li ng-repeat="res in availableAnnounces">{{res.announceLine}}</li>
             </ul>
         </div>
-
-        <div class="span8">
+        <div class="span3">
             <form ng-submit="search(searchField)">
                 <input type="text" ng-model="searchField" class="span8">
             </form>
-
-            <hr/>
-            <ul class="nav nav-tabs nav-stacked">
-                <li ng-repeat="file in availableResults | filter:searchInput">
-                    <a class="fileStore" href="/land/{{file.sha1}}" target="_blank">
-                        <i class="icon-download"></i>
-                        {{file.name}}
-                    </a>
-                </li>
-            </ul>
         </div>
-        <div class="span2 span-grey">
 
-            <div>
-                <uploadbox on-drop="onDrop(file)"/>
-            </div>
-
-            <ul class="nav nav-list bs-docs-sidenav span2">
-                <li ng-repeat="file in uploadFileList">
-                    <uploadfile file="file" index="$index"/>
-                </li>
-            </ul>
-        </div>
     </div>
 </div>
