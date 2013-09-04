@@ -1,4 +1,4 @@
-package org.eu.galaxie.vertx.mod.gwez.test.unit;
+package org.eu.galaxie.vertx.mod.battle.test.unit;
 
 import com.mycompany.myproject.PingVerticle;
 import org.junit.Test;

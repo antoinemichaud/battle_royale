@@ -1,4 +1,4 @@
-package org.eu.galaxie.vertx.mod.gwez.verticles
+package org.eu.galaxie.vertx.mod.battle.verticles
 
 import org.vertx.groovy.core.http.HttpServerRequest
 import org.vertx.groovy.core.http.RouteMatcher
@@ -49,7 +49,7 @@ class WebVerticle extends Verticle {
 
             server.listen(conf.port, conf.host)
 
-            container.logger.info("Gwez webapp on ${conf.host}:${conf.port} ...")
+            container.logger.info("Battle webapp on ${conf.host}:${conf.port} ...")
 
         } catch (Exception e) {
             container.logger.error('Startup error', e)
@@ -71,7 +71,7 @@ class WebVerticle extends Verticle {
     private def routeUpload(HttpServerRequest req) {
         req.pause()
         // TODO : check that filename do not contains any '..'
-        vertx.eventBus.send('gwez.fileYard.getBoardingPass', [:]) { boardingPass ->
+        vertx.eventBus.send('battle.fileYard.getBoardingPass', [:]) { boardingPass ->
 
             String boardingDir = boardingPass.body.directory
             String boardingName = boardingPass.body.filename
@@ -89,7 +89,7 @@ class WebVerticle extends Verticle {
                             vertx.fileSystem.move(tmpFileName, fileName) {
 
                                 // File going to the warp
-                                vertx.eventBus.send('gwez.fileYard.onboardFile', [filename: fileName]) { boardingResponse ->
+                                vertx.eventBus.send('battle.fileYard.onboardFile', [filename: fileName]) { boardingResponse ->
 
                                     // TODO : put boardingResponse content in elastic-search for indexation
 
@@ -121,7 +121,7 @@ class WebVerticle extends Verticle {
 
             println "chunks description is ${allChunksResp.body}"
 
-            vertx.eventBus.send('gwez.fileYard.landFile', allChunksResp.body) {
+            vertx.eventBus.send('battle.fileYard.landFile', allChunksResp.body) {
                 println "should be reassembled as ${allChunksResp.body.name}"
                 req.response.end()
             }

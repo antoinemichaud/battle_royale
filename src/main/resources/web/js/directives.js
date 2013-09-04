@@ -1,4 +1,4 @@
-gwezModule.directive('uploadbox', function (uploadFileList, $rootScope, uploader, uploadFileList) {
+battleModule.directive('uploadbox', function (uploadFileList, $rootScope, uploader, uploadFileList) {
     return {
         restrict:'E',
         replace:true,
@@ -57,7 +57,7 @@ gwezModule.directive('uploadbox', function (uploadFileList, $rootScope, uploader
     }
 });
 
-gwezModule.directive('uploadfile', function () {
+battleModule.directive('uploadfile', function () {
     return {
         restrict:'E',
         replace:true,

@@ -1,4 +1,4 @@
-package org.eu.galaxie.vertx.mod.gwez.verticles
+package org.eu.galaxie.vertx.mod.battle.verticles
 
 import org.vertx.groovy.platform.Verticle
 
@@ -19,13 +19,13 @@ class SearchVerticle extends Verticle {
 
         vertx.eventBus.registerHandler('search.local') { searchMessage ->
             def esMessage = [
-                    index: 'gwez',
+                    index: 'battle',
                     entity: 'files',
                     query: 'name:' + searchMessage.body.query
             ]
             println "Doing local search: ${esMessage.query}"
 
-            vertx.eventBus.send('gwez.elasticSearch.query', esMessage) { esResponse ->
+            vertx.eventBus.send('battle.elasticSearch.query', esMessage) { esResponse ->
                 if (esResponse.body.body.hits) {
                     def collect = esResponse.body.body.hits.hits.collect { it.'_source' }
                     searchMessage.reply([query: searchMessage.body.query, files: collect])
@@ -59,22 +59,22 @@ class SearchVerticle extends Verticle {
         vertx.eventBus.registerHandler('getWithChunks') { searchMessage ->
             println "get with chunks"
             def esMessage = [
-                    index: 'gwez',
+                    index: 'battle',
                     entity: 'files',
                     id: searchMessage.body.sha1
             ]
             println "get with chunks 2"
-            vertx.eventBus.send('gwez.elasticSearch.getObject', esMessage) { esResponse ->
+            vertx.eventBus.send('battle.elasticSearch.getObject', esMessage) { esResponse ->
                 println "got response from ES : ${esResponse.body}"
                 def fileName = esResponse.body.body.'_source'.name
 
                 def esChunksMessage = [
-                        index: 'gwez',
+                        index: 'battle',
                         entity: 'chunks',
                         query: 'belongsTo:' + searchMessage.body.sha1
                 ]
 
-                vertx.eventBus.send('gwez.elasticSearch.query', esChunksMessage) { esChunksResponse ->
+                vertx.eventBus.send('battle.elasticSearch.query', esChunksMessage) { esChunksResponse ->
                     def res = esChunksResponse.body.body.hits.hits.collect { it.'_source' }.sort { it.num }.collect { it.sha1 }
                     println "COLLECTED : ${res}"
                     def landingMessage = [

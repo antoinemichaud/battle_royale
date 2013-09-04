@@ -4,7 +4,7 @@ var FileStatus = {
     FINISHED: 3
 };
 
-gwezModule.value('uploadFileList', []);
+battleModule.value('uploadFileList', []);
 
 function RootCtrl($rootScope, $scope, $route, $routeParams, $location, eventbus, uploadFileList) {
 

@@ -1,4 +1,4 @@
-package org.eu.galaxie.vertx.mod.gwez.test.integration.groovy;
+package org.eu.galaxie.vertx.mod.battle.test.integration.groovy;
 /*
  * Copyright 2013 Red Hat, Inc.
  *

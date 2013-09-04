@@ -1,4 +1,4 @@
-gwezModule.factory('eventbus', function ($rootScope) {
+battleModule.factory('eventbus', function ($rootScope) {
     var eb = new vertx.EventBus(window.location.protocol +
         '//' +
         window.location.hostname +
@@ -59,7 +59,7 @@ gwezModule.factory('eventbus', function ($rootScope) {
     return eb;
 });
 
-gwezModule.factory('uploader', function ($rootScope) {
+battleModule.factory('uploader', function ($rootScope) {
     return {
         sendFile: function (fileDescList, index, progressCallback) {
             if (index >= fileDescList.length) {
