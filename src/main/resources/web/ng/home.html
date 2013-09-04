@@ -4,7 +4,7 @@
 
         <form action="">
             <select>
-                <option value="categorie1">categorie1</option>
+                <option value="categorie1" ng-click="displayPopup()">categorie1</option>
                 <option value="categorie2">categorie2</option>
                 <option value="categorie3">categorie3</option>
             </select>
@@ -14,8 +14,6 @@
                 <option value="region3">region3</option>
             </select>
         </form>
-
-
 
         <div class="span2 bs-docs-sidebar">
             <ul class="nav nav-list bs-docs-sidenav affix span2">
@@ -38,7 +36,7 @@
 
             <hr/>
             <ul class="nav nav-tabs nav-stacked">
-                <li ng-repeat="file in availableFiles | filter:searchInput">
+                <li ng-repeat="file in availableResults | filter:searchInput">
                     <a class="fileStore" href="/land/{{file.sha1}}" target="_blank">
                         <i class="icon-download"></i>
                         {{file.name}}

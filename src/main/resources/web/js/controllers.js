@@ -111,7 +111,7 @@ function RootCtrl($rootScope, $scope, $route, $routeParams, $location, eventbus,
 
     $scope.searchResults = [];
     $scope.visibleResultIndex = null;
-    $scope.availableFiles = [];
+    $scope.availableAnnounces = [];
 
     // Upload section
     $scope.uploadFileList = uploadFileList;
@@ -127,7 +127,7 @@ function RootCtrl($rootScope, $scope, $route, $routeParams, $location, eventbus,
 
     $scope.showResults = function (index) {
         $scope.visibleResultIndex = index;
-        $scope.availableFiles = $scope.searchResults[index].results;
+        $scope.availableAnnounces = $scope.searchResults[index].results;
     };
 
     $scope.search = function (searchField) {
@@ -138,6 +138,9 @@ function RootCtrl($rootScope, $scope, $route, $routeParams, $location, eventbus,
 
         eventbus.emit('search', {query: searchField});
     };
+
+    $scope.displayPopup = function () {
+    }
 
     eventbus.on('search.response', function (remoteResponse) {
         console.log('received a message: ' + JSON.stringify(remoteResponse));
